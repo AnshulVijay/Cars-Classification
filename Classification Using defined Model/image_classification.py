@@ -11,7 +11,6 @@ from scipy.misc import imread
 import numpy as np
 import pandas as pd
 import os
-import dataset
 import keras
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
