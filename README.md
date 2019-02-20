@@ -4,7 +4,8 @@ Image classification for three different types of cars
 Follow the steps to perform the classification:
 1. Clone the repository
 2. From Image Dataset Generator firstly run the Dataset Generator.py to download the images from the google, modify the code accordingly to change the dowloading site and no of images.
-3. Run augmentation.py to generate more no of images by running python augmentation.py -folder=Cars -limit=10000
+3. Run augmentation.py to generate more no of images by running python augmentation.py -folder=Cars -limit=10000 
+            Augmnetation code referenced from "https://github.com/tomahim/py-image-dataset-generator" 
 4. You got your Dataset now, get ready to perform classification.
 5. Open Classification Using Defined Model 
 6. Run image classification.py to retrain the model or you can directly test by using given weights and yaml files
