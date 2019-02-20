@@ -6,7 +6,6 @@ import argparse
 import numpy as np
 from keras import backend as K
 from keras.models import load_model
-from keras.applications.resnet50 import preprocess_input
 from keras.preprocessing import image
 from keras.models import model_from_yaml
 

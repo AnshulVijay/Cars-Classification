@@ -1,7 +1,6 @@
 
 from keras.models import Model
-from layers import Flatten, Dense, Dropout
-from keras.applications.resnet50 import ResNet50, preprocess_input
+from keras.layers import Flatten, Dense, Dropout
 from keras.optimizers import Adam
 from keras.preprocessing.image import ImageDataGenerator
 from keras import backend as K
@@ -32,11 +31,11 @@ for cls, idx in train_batches.class_indices.items():
 
     
 classify = ResNet50(include_top=False, weights='imagenet', input_tensor=None, input_shape=(IMAGE_SIZE[0],IMAGE_SIZE[1],3))
-x = net.output
+x = classify.output
 x = Flatten()(x)
 x = Dropout(0.5)(x)
 output_layer = Dense(NUM_CLASSES, activation='softmax', name='softmax')(x)
-classify_final = Model(inputs=net.input, outputs=output_layer)
+classify_final = Model(inputs=classify.input, outputs=output_layer)
 for layer in classify_final.layers[:FREEZE_LAYERS]:
     layer.trainable = False
 for layer in classify_final.layers[FREEZE_LAYERS:]:
@@ -48,5 +47,10 @@ classify_final.fit_generator(train_batches, steps_per_epoch = train_batches.samp
 
 Y_pred = classify_final.predict_generator(valid_batches, steps=5)
 y_pred = np.argmax(Y_pred,axis=1)
+
+print("Confusion Metrix")
+print(metrics.confusion_matrix(valid_batches.classes, y_pred))
+print("Classification Report")
+print(metrics.classification_report(valid_batches.classes, y_pred))
 print(classify_final.summary())
-net_final.save(WEIGHTS_FINAL)
+classify_final.save(WEIGHTS_FINAL)
