@@ -1,0 +1,3 @@
+My aim was to train my model for 10000 images, but was not able to train for them due to system incompetent. So i took 1000 images of each class and trained model for them.
+I firstly coded resnet50 classification taking refrence from medium and other websites. Got to know how pretrained weights work. After that i coded another classification by defining weights by my own. Accuracy was not high because i was not able to train my model on large no of images.
+When i tested my prediction code it was mostly accurate except in some cases of completely inverted images, this is the flaw in my code occured due to less taining data and missing more layered network. I am looking further to remove this error also as soon as possible.
